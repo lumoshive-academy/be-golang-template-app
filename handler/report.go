@@ -19,7 +19,7 @@ func (h *HandlerReport) ReportOrder() {
 	var status string
 	fmt.Print("Status :")
 	fmt.Scan(&status)
-	report, err := h.Service.TotalOrderPerMouth()
+	report, err := h.Service.TotalOrderPerMouth(status)
 	if err != nil {
 		fmt.Println("Failed to retrieve data:", err)
 		return
