@@ -2,6 +2,7 @@ package repository
 
 import (
 	"database/sql"
+	"errors"
 	"go-15/model"
 	"time"
 )
@@ -76,10 +77,24 @@ func (repo *RepositoryTemplate) Update(id int, template *model.Template) error {
 }
 
 func (repo *RepositoryTemplate) Delete(id int) error {
-	query := `UPDATE templates 
-	          SET deleted_at = $1 
-	          WHERE id = $2 AND deleted_at IS NULL`
-
-	_, err := repo.DB.Exec(query, time.Now(), id)
+	query := `DELETE FROM templates WHERE id = $1 `
+	_, err := repo.DB.Exec(query, id)
 	return err
+}
+
+func (repo *RepositoryTemplate) CheckEmail(email string) error {
+	query := `SELECT * FROM users WHERE email = $1 RETURNING ID`
+	var id int
+	err := repo.DB.QueryRow(query,
+		email,
+	).Scan(&id)
+
+	if err != nil {
+		return err
+	}
+
+	if id < 0 {
+		return errors.New("not found")
+	}
+	return nil
 }
