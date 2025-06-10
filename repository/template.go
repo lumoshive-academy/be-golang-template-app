@@ -10,8 +10,8 @@ type RepositoryTemplate struct {
 	DB *sql.DB
 }
 
-func NewRepoTemplate(db *sql.DB) *RepositoryTemplate {
-	return &RepositoryTemplate{
+func NewRepoTemplate(db *sql.DB) RepositoryTemplate {
+	return RepositoryTemplate{
 		DB: db,
 	}
 }

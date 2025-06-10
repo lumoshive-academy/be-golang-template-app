@@ -9,8 +9,8 @@ type ServiceTemplate struct {
 	RepoTemplate repository.RepositoryTemplate
 }
 
-func NewServiceTemplate(repoTemplate repository.RepositoryTemplate) *ServiceTemplate {
-	return &ServiceTemplate{
+func NewServiceTemplate(repoTemplate repository.RepositoryTemplate) ServiceTemplate {
+	return ServiceTemplate{
 		RepoTemplate: repoTemplate,
 	}
 }
