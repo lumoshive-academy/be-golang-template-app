@@ -5,12 +5,16 @@ import (
 	"go-15/repository"
 )
 
-type ServiceReport struct {
-	RepoReport repository.RepositoryReport
+type InterfaceServiceReport interface {
+	TotalOrderPerMouth(status string) ([]*model.Report, error)
 }
 
-func NewServiceReport(repoReport repository.RepositoryReport) ServiceReport {
-	return ServiceReport{
+type ServiceReport struct {
+	RepoReport repository.InterfaceRepoReport
+}
+
+func NewServiceReport(repoReport repository.InterfaceRepoReport) *ServiceReport {
+	return &ServiceReport{
 		RepoReport: repoReport,
 	}
 }

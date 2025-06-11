@@ -5,12 +5,16 @@ import (
 	"go-15/model"
 )
 
+type InterfaceRepoReport interface {
+	TotalOrderPerMount(status string) ([]*model.Report, error)
+}
+
 type RepositoryReport struct {
 	DB *sql.DB
 }
 
-func NewReportder(db *sql.DB) RepositoryReport {
-	return RepositoryReport{
+func NewRepoReport(db *sql.DB) InterfaceRepoReport {
+	return &RepositoryReport{
 		DB: db,
 	}
 }

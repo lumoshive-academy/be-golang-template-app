@@ -6,10 +6,10 @@ import (
 )
 
 type HandlerReport struct {
-	Service service.ServiceReport
+	Service service.InterfaceServiceReport
 }
 
-func NewHandlerReport(service service.ServiceReport) *HandlerReport {
+func NewHandlerReport(service service.InterfaceServiceReport) *HandlerReport {
 	return &HandlerReport{
 		Service: service,
 	}

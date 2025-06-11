@@ -16,7 +16,7 @@ func main() {
 	defer db.Close()
 
 	// Initialize Repository and Service
-	ReportRepo := repository.NewReportder(db)
+	ReportRepo := repository.NewRepoReport(db)
 	ReportService := service.NewServiceReport(ReportRepo)
 	ReportHandler := handler.NewHandlerReport(ReportService)
 
